@@ -1,3 +1,4 @@
+require('dotenv').config();
 const Express = require('express');
 const db = require('./db');
 
@@ -16,8 +17,8 @@ app.use("/square", controllers.squareController)
 db.authenticate()
   .then(() => db.sync())
   .then(() => {
-    app.listen(4000, () => {
-      console.log(`[server]: App is listening on localhost:4000`);
+    app.listen(process.env.PORT, () => {
+      console.log(`[server]: App is listening on ${process.env.PORT}`);
     })
   })
   .catch((err) => {
